@@ -17,7 +17,7 @@ angular.module('abastible.controllers', [])
   $rootScope.db.executeQuery("DELETE FROM PED1");
   */
   $scope.entrada = function(valor) { 
-                      $rootScope.imprimeCierre(valor);
+                      $rootScope.printVal(valor);
   };
   /* Get Server Timezone */
 

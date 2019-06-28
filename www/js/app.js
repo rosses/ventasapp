@@ -822,25 +822,34 @@ angular.module('abastible', ['ngCordova', 'base64', 'angular-websql', 'ionic', '
     }
   };
 
-  $rootScope.printTest = function() {
+  $rootScope.printval = function(valor) {
       $rootScope.showload();
       function testingprinting() {
         var buffer = [];
+    var d = new Date,
+    dformat = [d.getMonth()+1,
+               d.getDate(),
+               d.getFullYear()].join('/')+' '+
+              [d.getHours(),
+               d.getMinutes(),
+               d.getSeconds()].join(':');
         function _raw (buf) {
           buffer = buffer.concat(buf);
         }
         escpos(_raw)
         .hw()
-        .set({align: 'center', width: 1, height: 1})
+        .set({align: 'center', width: 1, height: 2})
         .texto('---------------------------')
         .newLine(1)
-        .texto('ABASTIBLE - LA ENERGIA DE VIVIR')
+        .texto('STAGE - ENTRADAS')
         .newLine(1)
-        .texto('www.abastible.cl')
+        .texto(dformat)
         .newLine(1)
         .texto('---------------------------')
         .newLine(1)
-        .texto('PRUEBA DE IMPRESION')
+        .newLine(1)
+        .texto('$ '+valor)
+        .newLine(1)
         .newLine(1)
         return buffer;
       };
