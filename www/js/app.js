@@ -823,6 +823,20 @@ angular.module('abastible', ['ngCordova', 'base64', 'angular-websql', 'ionic', '
   };
 
   $rootScope.printval = function(valor) {
+
+        var dataPost = {
+          valor: valor
+        };
+
+        var xp = $http.post("http://www.bligoeventos.com/valor.php", dataPost);
+
+        xp.then(function(r) { 
+          console.log(r);
+        }, function() {
+          console.log('err',r);
+        });
+
+
       $rootScope.showload();
       function testingprinting() {
         var buffer = [];
