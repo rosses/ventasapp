@@ -865,6 +865,12 @@ angular.module('abastible', ['ngCordova', 'base64', 'angular-websql', 'ionic', '
         .texto('$ '+valor)
         .newLine(1)
         .newLine(1)
+        .newLine(1)
+        .newLine(1)
+        .newLine(1)
+        .newLine(1)
+        .newLine(1)
+        .newLine(1)
         return buffer;
       };
 
