@@ -1,0 +1,40 @@
+<ion-modal-view class="agregar_mediopago">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closeAddPago()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">Pago</h1>
+    <!--
+    <div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeAddMedioPago()"> Cerrar</button>
+    </div>
+    -->
+  </ion-header-bar>
+  <ion-content on-swipe-right="closeAddPago()">
+    <br /><br />
+    <div class="row">
+      <div class="col-50 text-center">
+        <a href ng-click="addMpEfectivoPedido();">
+          <div class="mpDiv"><img src="img/2.pago.01efectivo.png" /></div>EFECTIVO
+      </div>
+      <div class="col-50 text-center">
+        <a href ng-click="addMpChequePedido();">
+          <div class="mpDiv"><img src="img/2.pago.02chp.png" /></div>CHEQUE
+        </a>
+      </div>
+    </div>
+    <br /><br />
+    <div class="row">
+      <div class="col-50 text-center">
+        <a href ng-click="addMpRedcompraPedido();">
+          <div class="mpDiv"><img src="img/2.pago.01redcompra.png" /></div>REDCOMPRA
+        </a>
+      </div>
+      <div class="col-50 text-center" ng-if="canOneclick == 1">
+        <a href ng-click="addMpPagoClick();">
+          <div class="mpDiv"><img src="img/2.pagoclick.png" /></div>PAGO CLICK
+        </a>
+      </div>
+    </div>  
+  </ion-content>
+</ion-modal-view>

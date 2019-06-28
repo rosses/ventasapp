@@ -1,0 +1,42 @@
+<ion-modal-view class="agregar_material_promocion">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closeSeleccionMaterialPromocion()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">Seleccione material</h1>
+    <!--
+    <div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeSeleccionMaterialPromocion()"> Cancelar</button>
+    </div>
+    -->
+  </ion-header-bar>
+  <ion-content on-swipe-right="closeSeleccionMaterialPromocion()">
+    <!--
+    <ion-item ng-repeat="aux in auxList">
+      <ion-radio ng-model="auxMaterial" ng-value="aux.material">{{aux.material}}</ion-radio>
+    </ion-item>
+    -->
+    <slick on-swipe-right="noSwipeRight($event)" settings="slickConfig2">
+      <!--  ng-show="auxList.length > 0" center-mode=true infinite="true" slides-to-show="{{(auxList.length >= 3 ? auxList.length : 1)}}" slides-to-scroll=1 --> 
+      <div class="agregar-icon" ng-repeat="aux in auxList">
+        <div class="mat">
+          <h1>{{aux.kilos}}<br />{{aux.compo}}</h1>
+        </div>
+      </div>
+    </slick>
+    <br />
+    <div class="card">
+      <div class="item item-text-wrap">
+        <b>Promoción:</b> {{auxCodigo}}<br />
+        <b>Monto:</b> {{(auxMonto | currency:"$ ":0)}}<br />
+        Seleccione una de las cargas disponible en la promoción.
+      </div>
+    </div>
+
+    <div class="text-center">
+      <br /><br />
+      <button class="button-abastible-line2 button" ng-click="AddPromocionOK();">Agregar</button>
+      <br /><br />
+    </div>
+  </ion-content>
+</ion-modal-view>

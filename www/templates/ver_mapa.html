@@ -1,0 +1,51 @@
+<ion-modal-view class="ver_mapa">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closeMapa()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">RUTA PEDIDOS</h1>
+    <!--
+    <div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeMapa()"> Cerrar</button>
+    </div>
+    -->
+  </ion-header-bar>
+  <ion-content scroll="false">
+    <div id="map" data-tap-disabled="true"></div>
+    <div id="footmap">
+      <div class="timeleft_route" id="div_tlr" style="display:none;">Tiempo normal para la ruta: <strong><span id="timeleft_route"></span></strong></div>
+      <div class="timeleft_route" id="div2_tlr" style="display:none;"">Deberías demorar <strong><span id="timeleft_route2"></span></strong> con el tráfico actual.</div>
+      <div class="timeleft_route" id="div3_tlr" style="display:none;"">Deberías demorar <strong><span id="timeleft_route3"></span></strong> con el tráfico actual, considerando 7 min por cada entrega.</div>
+      
+      <ion-scroll direction="y" class="ruta_detalle_scroll" style="display:none;">
+        <div id="ruta_detalle"></div>
+        <br /><br /><br />
+      </ion-scroll>
+      
+      <hr size="1" color="gray" />
+      <ion-slide-box on-slide-changed="slideMapChanged($index)" options="{pagination: false}">
+        <ion-slide ng-repeat="p in routing">
+          <div class="slide-pedido">
+            <div class="in" ng-show="p.index != 0">
+              <div class="row">
+                <div class="col-80">
+                  <h3>#{{p.index}} en ruta / pedido {{p.numero}}</h3>
+                  <h1 ng-bind-html="p.info"></h1>
+                  <h2>A {{p.distancia}} KM de tí</h2>
+                  <div class="slide-material">
+                    <div ng-bind-html="p.routingPDetalle"></div>
+                  </div>
+                </div>
+                <div class="col-20">
+                  <a href ng-click="goFromMap(p.origen, p.numero);"><i class="icon ion-arrow-right-c"></i><br />Ir al pedido</a>
+                </div>
+              </div>
+            </div>
+            <div class="twofinger" ng-show="p.index == 0"><img src="img/icon.twofinger.png" /></div>
+            <h6 ng-show="p.index == 0">Desliza para ver el detalle de la ruta</h6>
+          </div>
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+  </ion-content>
+</ion-modal-view>

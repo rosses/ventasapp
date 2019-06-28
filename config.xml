@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.bligo.ventas" version="12.3.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>Bligo entradas</name>
+  <description>
+        Bligo
+    </description>
+  <author href="http://www.bligoeventos.com" email="rosses@gmail.com">
+        Bligo
+  </author>
+
+  <content src="index.html"/>
+  <access origin="*"/>
+  <access origin="content://*" />
+  <access origin="cdvfile://*"/>
+
+  <allow-navigation href="file:///**/*"/>
+  <allow-navigation href="*://**.phdesign.com.br/*"/>
+  <allow-navigation href="filesystem://**/*"/>
+  <allow-navigation href="cdvfile://**/*"/>
+
+  <plugin name="cordova-plugin-whitelist" version="1" />
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <!--<preference name="AndroidLaunchMode" value="singleTask"/>-->
+
+  <preference name="SplashScreenDelay" value="3000" />
+  <preference name="SplashScreen" value="screen" />
+  <preference name="AutoHideSplashScreen" value="true" />
+  <preference name="auto-hide-splash-screen" value="true" />
+  <preference name="ShowSplashScreenSpinner" value="true" />
+  <preference name="FadeSplashScreen" value="false"/>
+
+
+  <preference name="android-minSdkVersion" value="20"/>
+  <preference name="android-targetSdkVersion" value="27"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <preference name="permissions" value="none"/>
+  <preference name="Orientation" value="portrait" />
+
+  <preference name="StatusBarOverlaysWebView" value="true" />
+  <preference name="StatusBarStyle" value="lightcontent" />
+
+  <preference name="android-build-tool" value="gradle" />
+  <preference name="phonegap-version" value="cli-7.1.0" />
+
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+  <feature name="Notification">
+    <param name="ios-package" value="CDVNotification" />
+  </feature>
+  
+  <!-- fix font family error -->
+  <plugin name="cordova-android-support-gradle-release">
+    <variable name="ANDROID_SUPPORT_VERSION" value="23.+" />
+  </plugin>
+
+  <plugin name="cordova-plugin-mauron85-background-geolocation">
+    <variable name="ALWAYS_USAGE_DESCRIPTION" value="This app requires background tracking enabled" />
+    <variable name="MOTION_USAGE_DESCRIPTION" value="This app requires motion detection" />
+    <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11.0.1" />
+    <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="23+" />
+    <param name="ALWAYS_USAGE_DESCRIPTION" value="This app requires background tracking enabled" />
+    <param name="MOTION_USAGE_DESCRIPTION" value="This app requires motion detection" />
+    <param name="GOOGLE_PLAY_SERVICES_VERSION" value="11.0.1" />
+    <param name="ANDROID_SUPPORT_LIBRARY_VERSION" value="23+" />
+  </plugin>
+  
+  <plugin name="cordova-plugin-globalization" />
+  <plugin name="cordova-plugin-inappbrowser" />
+  <plugin name="cordova-plugin-dialogs" />
+  <plugin name="cordova-plugin-file" />
+  <plugin name="cordova-plugin-media" />
+  <plugin name="cordova-plugin-camera" spec="2.4.1" />
+  <plugin name="cordova-plugin-media-capture" spec="3.0.2">
+    <variable name="CAMERA_USAGE_DESCRIPTION" value="App Repartidor necesita usar tu camara" />
+    <variable name="MICROPHONE_USAGE_DESCRIPTION" value="App Repartidor necesita usar tu microfono" />
+    <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="App Repartidor quiere acceder a tu libreria" />
+  </plugin>
+
+  <feature name="Camera">
+      <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+  </feature>
+  
+  <!--<plugin spec="https://rosses@github.com/rosses/cordova-plugin-splashscreen.git" source="git" />-->
+  <!--<plugin spec="https://github.com/apache/cordova-plugin-splashscreen.git" source="git" />-->
+  <plugin name="cordova-plugin-splashscreen" />
+
+  <!--<preference name="exit-on-suspend" value="false"/>-->
+  <preference name="android-windowSoftInputMode" value="stateHidden|adjustResize" />
+  <preference name="KeyboardShrinksView" value="true" />
+  <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
+  <allow-intent href="tel:*"/>
+  <allow-intent href="sms:*"/>
+  <allow-intent href="mailto:*"/>
+  <allow-intent href="geo:*"/>
+  <allow-intent href="waze:*"/>
+
+  <plugin name="cordova-plugin-device" />
+  <plugin name="cordova-plugin-statusbar" />
+  <plugin name="cordova-custom-config" />
+  <plugin name="cordova-plugin-keyboard" />
+  <plugin name="cordova-plugin-dialogs" spec="1.2.1" />
+  <plugin name="cordova-plugin-appavailability" />
+
+  <plugin name="phonegap-plugin-barcodescanner" spec="6.0.6">
+    <param name="CAMERA_USAGE_DESCRIPTION" value="Lector Abastible"/>
+  </plugin>
+
+  <!--<plugin spec="https://github.com/encke/wazelink.git" source="git" />-->
+  <!--<plugin source="git" spec="https://github.com/hkalina/cordova-plugin-kiosk.git" />-->
+  <plugin spec="https://github.com/adaltojunior86/cordova-waze-navigator.git" source="git" />
+  <!--<plugin spec="https://github.com/rosses/cordova-plugin-local-notifications.git#app-repartidor" source="git" />-->
+  <plugin spec="https://github.com/katzer/cordova-plugin-local-notifications.git" source="git" />
+  <!--<plugin spec="https://github.com/katzer/cordova-plugin-background-mode.git" source="git" />-->
+  <!--<plugin spec="https://github.com/tushe/cordova-plugin-background-mode.git#tushe-patch-1" source="git" />-->
+  <plugin spec="https://github.com/EriveltonMS/cordova-plugin-background-mode.git#patch-1" />
+  <!--<plugin name="cordova-plugin-background-mode" />-->
+  <plugin spec="https://github.com/ranjitpandit/whatsapp-phonegap-plugin.git" source="git" />
+  <plugin spec="https://github.com/rosses/Start-App.git" source="git" />
+  <!--https://github.com/Telerik-Verified-Plugins/BarcodeScanner.git-->
+
+  <platform name="ios">
+
+    <allow-intent href="itms:*"/>
+    <allow-intent href="itms-apps:*"/>
+
+    <plugin name="cordova-plugin-ble-central" source="npm">
+      <param name="BLUETOOTH_USAGE_DESCRIPTION" value="Abastible Impresora Voucher"/>
+    </plugin>
+
+    <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
+        <array>
+            <string>waze</string>
+        </array>
+    </config-file>
+    <config-file parent="UIBackgroundModes" target="*-Info.plist">
+        <array>
+            <string>bluetooth-central</string>
+        </array>
+    </config-file>
+    <config-file parent="CFBundleDevelopmentRegion" target="*-Info.plist">
+        <array>
+            <string>Spanish</string>
+        </array>
+    </config-file>
+    <config-file parent="CFBundleLocalizations" target="*-Info.plist">
+        <array>
+            <string>es</string>
+        </array>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+        <string>Esta app necesita acceso a la cámara</string>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+        <string>Esta app necesita acceso a la librería</string>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSMicrophoneUsageDescription">
+        <string>Esta app necesita acceso al micrófono</string>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSLocationUsageDescription">
+        <string>Esta app necesita acceso a tu ubicación</string>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+        <string>Esta app necesita acceso a tu ubicación (siempre)</string>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+        <string>Esta app necesita acceso a tu ubicación (en uso)</string>
+    </config-file>
+
+    <!-- images are determined by width and height. The following are supported -->
+    <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
+    <splash src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
+    <splash src="resources/ios/splash/Default-Portrait~ipad.png" width="768" height="1024"/>
+    <splash src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+    <splash src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" height="768"/>
+    <splash src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+    <splash src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" height="1136"/>
+    <splash src="resources/ios/splash/Default-667h.png" width="750" height="1334"/>
+    <splash src="resources/ios/splash/Default-736h.png" width="1242" height="2208"/>
+    <splash src="resources/ios/splash/Default-Landscape-736h.png" width="2208" height="1242"/>
+    <!-- iOS 8.0+ -->
+    <!-- iPhone 6 Plus  -->
+    <icon src="resources/ios/icon/icon-60@3x.png" width="180" height="180" />
+    <!-- iOS 7.0+ -->
+    <!-- iPhone / iPod Touch  -->
+    <icon src="resources/ios/icon/icon-60.png" width="60" height="60" />
+    <icon src="resources/ios/icon/icon-60@2x.png" width="120" height="120" />
+    <!-- iPad -->
+    <icon src="resources/ios/icon/icon-76.png" width="76" height="76" />
+    <icon src="resources/ios/icon/icon-76@2x.png" width="152" height="152" />
+    <!-- iOS 6.1 -->
+    <!-- Spotlight Icon -->
+    <icon src="resources/ios/icon/icon-40.png" width="40" height="40" />
+    <icon src="resources/ios/icon/icon-40@2x.png" width="80" height="80" />
+    <!-- iPhone / iPod Touch -->
+    <icon src="resources/ios/icon/icon.png" width="57" height="57" />
+    <icon src="resources/ios/icon/icon@2x.png" width="114" height="114" />
+    <!-- iPad -->
+    <icon src="resources/ios/icon/icon-72.png" width="72" height="72" />
+    <icon src="resources/ios/icon/icon-72@2x.png" width="144" height="144" />
+    <!-- iPhone Spotlight and Settings Icon -->
+    <icon src="resources/ios/icon/icon-small.png" width="29" height="29" />
+    <icon src="resources/ios/icon/icon-small@2x.png" width="58" height="58" />
+    <!-- iPad Spotlight and Settings Icon -->
+    <icon src="resources/ios/icon/icon-50.png" width="50" height="50" />
+    <icon src="resources/ios/icon/icon-50@2x.png" width="100" height="100" />
+  </platform>
+
+  <platform name="android">
+    <!-- for Android -->
+    <feature name="Whatsapp">
+        <param name="android-package" value="mobi.moica.whatsapp.Whatsapp" />
+    </feature>
+    <allow-intent href="market:*" />
+    <preference name="loadUrlTimeoutValue" value="10000" />
+    <preference name="ErrorUrl" value="_index.html"/>
+    <!--
+    <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/activity_name']" mode="merge">
+        <activity android:theme="@android:style/Theme.Translucent"></activity>
+    </edit-config>
+    -->
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+
+    <resource-file src="announcement.mp3" target="res/raw/announcement.mp3" />
+    <!--
+    <config-file platform="android" parent="/manifest" mode="merge">
+        <application android:debuggable="true" />
+    </config-file>
+    -->
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    </config-file>
+    <splash density="land-hdpi" src="resources/android/splash/drawable-land-hdpi-screen.png" />
+    <splash density="land-ldpi" src="resources/android/splash/drawable-land-ldpi-screen.png" />
+    <splash density="land-mdpi" src="resources/android/splash/drawable-land-mdpi-screen.png" />
+    <splash density="land-xhdpi" src="resources/android/splash/drawable-land-xhdpi-screen.png" />
+    <splash density="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
+    <splash density="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
+    <splash density="port-mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
+    <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
+    <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
+    <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+    <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
+    <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
+    <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
+    <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
+    <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
+    <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
+
+    <plugin name="cordova-plugin-bluetooth-serial">
+      <param name="BLUETOOTH_USAGE_DESCRIPTION" value="Abastible Impresora Voucher"/>
+    </plugin>
+  </platform>
+
+  <splash src="resources/splash.png" />
+
+</widget>

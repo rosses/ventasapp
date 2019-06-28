@@ -1,0 +1,126 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-ios-information-outline" menu-toggle="right"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable header-bar">
+      <h1 class="title">Tu cuenta</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="text-center side">
+        <img src="{{app.foto == '' || app.foto.indexOf('sinfoto') !== -1 ? 'img/default_avatar.png' : app.foto}}" class="perfil_foto" />
+        <br /><br />
+        <h6>Camión / SIM</h6>
+        <div class="perfil_camion">{{app.camion}} / {{app.sim}}</div>
+        <h6>Distribuidor</h6>
+        <div class="perfil_nombre">{{app.nombre}}</div>
+        <h6>Repartidor</h6>
+        <div class="perfil_nombre">{{app.repartidor}}</div>
+        <div align='center'>
+        <a href ng-click="$root.changeDriver();" class="printingTest">Cambiar repartidor</a>
+        </div>
+        <br />
+        <h6>Versión App</h6>
+        <div class="perfil_version">{{abaTerrenoVersionGlo}}.{{abaTerrenoVersionVer}}.{{abaTerrenoVersionRev}} {{$root.abaTerrenoAmbiente}} ({{$root.huella}})&nbsp;&nbsp;&nbsp;<a href ng-click="$root.printTest();" class="printingTest">
+            Test Impresión
+        </a></div>
+
+      </div>
+        <div align='center'>
+
+      <ion-list>
+        <!--
+        <ion-item menu-close>
+          Cambiar mi foto
+        </ion-item>
+        <ion-item menu-close>
+          Cambiar mi clave
+        </ion-item>
+        
+        <ion-item menu-close href ng-click="gotoPrintConfig();">
+          Impresora
+        </ion-item>
+        -->
+        <div class="text-center lateral_links">
+          <a href ng-click="$root.cerrarSesion();">
+            Cerrar sesión
+          </a>
+        </div>
+        </div>
+        
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu side="right">
+    <ion-header-bar class="bar-stable header-bar">
+      <h1 class="title">Información</h1>
+    </ion-header-bar>
+    <ion-content class="infobox">
+      
+      <ion-list>
+        <div class="item item-divider">
+          <b>Dispositivos</b>
+        </div>
+        <ion-item>
+          <i class="icon ion-ios-printer-outline"></i>
+          &nbsp;&nbsp;&nbsp;Impresora<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$root.statusImpresora}}</b>
+          <ion-toggle ng-change="onoffPrint()" ng-model="printerEnabled.checked"></ion-toggle>
+
+        </ion-item>
+        <ion-item>
+          <i class="icon ion-ios-location-outline"></i>&nbsp;&nbsp;&nbsp;GPS <b>{{$root.statusGPS}}</b>
+        </ion-item>
+        <div class="item item-divider">
+          <b>Soporte</b>
+        </div>
+        <ion-item>
+          De Lun. a Vie. de 07:00 a 18:00
+        </ion-item>
+        <ion-item>
+          <a href="tel:+56226939399"><i class="icon ion-ios-telephone-outline"></i>&nbsp;&nbsp;&nbsp;Soporte equipos móviles</a>
+        </ion-item>
+        <div class="item item-divider">
+          <b>Emergencias</b>
+        </div>
+        <ion-item>
+          Sab. y Dom. de 09:00 a 18:00
+        </ion-item>
+        <ion-item>
+          <a href="tel:+56992199431"><i class="icon ion-ios-telephone-outline"></i>&nbsp;&nbsp;&nbsp;Soporte equipos móviles</a>
+        </ion-item>
+        <div class="item item-divider">
+          <b>Soporte en línea</b>
+        </div>
+        <ion-item style="background-color: #ff5b00;">
+          <!--
+          <a href ng-click="openWhatsapp();">
+          <i class="icon ion-social-whatsapp-outline"></i>&nbsp;&nbsp;&nbsp;Abrir WhatsApp soporte
+          </a>
+          -->
+          <a href menu-close ng-click="openTicketbox();" style="color:white;">
+          <i class="icon ion-ios-chatboxes-outline"></i>&nbsp;&nbsp;&nbsp;Solicitar ayuda
+          </a>
+
+        </ion-item>
+
+      </ion-list>
+      
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

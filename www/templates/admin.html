@@ -1,0 +1,60 @@
+<ion-view view-title="Login" hide-nav-bar="true">
+  <!-- do you want padding? -->
+  <ion-content scroll="false">
+  <abastible-header>
+    <div class="abastible-header__wrapper">
+      <img src="img/logo_alta.png" class="welcome_abastible" />
+
+      <div class="abastible-header__titles">
+        <h1 class="abastible-header__title">CONFIGURACIÓN DE CAMION</h1>
+        <h2 class="abastible-header__title">REPARTIDOR ABASTIBLE</h2>
+      </div>
+
+      <div class="botonAdministrador">
+        <button ng-click="back()">
+          <img src="img/left-arrow.png" />
+        </button>
+      </div>
+    </div>
+  </abastible-header>
+
+  <div ng-if="!canChange">
+
+    <div class="welcome__phone">
+      <img src="img/the_clave.png" class="the_phone" />
+      <input class="welcome__phone-input disc" ng-model="adminLogin.clave" maxlength="60" type="text" placeholder="" />
+    </div>
+
+    <abastible-button>
+    <!--type="submit"-->
+    <p class="abastible__button-text">
+      <button class="abastible__button-next" ng-click="doAdmin()">Cambiar camión</button>
+    </p>
+    </abastible-button>
+
+  </div>
+
+  <div ng-if="canChange">
+
+    <div class="welcome__phone">
+      <img src="img/the_distribuidor.png" class="the_phone" />
+      <input class="welcome__phone-input" ng-model="adminSet.di" maxlength="12" type="tel" placeholder="" />
+    </div>
+
+    <div class="welcome__phone">
+      <img src="img/the_camion.png" class="the_phone" />
+      <input class="welcome__phone-input" ng-model="adminSet.camion" maxlength="10" type="tel" placeholder="" />
+    </div>
+
+    <abastible-button>
+    <!--type="submit"-->
+    <p class="abastible__button-text">
+      <button class="abastible__button-next" ng-click="doOK()">Confirmar</button>
+    </p>
+    </abastible-button>
+
+  </div>
+
+  </ion-content>
+</ion-view>
+

@@ -1,0 +1,55 @@
+<ion-modal-view class="agregar_material">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear ion-ios-arrow-back back-button" ng-click="closeAddMaterial()"></button>
+    </div>
+    <h1 class="title">Agregar cilindro</h1>
+    <!--
+    <div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeAddMaterial()"> Cerrar</button>
+    </div>
+    -->
+  </ion-header-bar>
+  <ion-content>
+      <ion-slide-box on-swipe-right="noSwipeRight($event)" on-slide-changed="slideChanged($index)">
+        <ion-slide>
+          <div class="gas"><h1>5N</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>11N</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>15N</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>45N</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>5C</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>11C</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>15C</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>45C</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>15VM</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div class="gas"><h1>15VMA</h1></div>
+        </ion-slide>
+      </ion-slide-box>
+
+      <div class="slider_foot text-center">
+        <button ng-click="modalMatMenos();" class="button-icon button-icon button-clear ion-ios-minus-outline"></button>
+        <input type="tel" maxlength="2" ng-model="addMaterial.cantidad" />
+        <button ng-click="modalMatMas();" class="button-icon button-icon button-clear ion-ios-plus-outline"></button>
+        <br /><br />
+        <button class="button-abastible2 button" ng-click="modalMatClick();">Agregar</button>
+      </div>
+  </ion-content>
+</ion-modal-view>

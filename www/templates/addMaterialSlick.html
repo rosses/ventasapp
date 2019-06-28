@@ -1,0 +1,106 @@
+<ion-modal-view class="agregar_material">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closeAddMaterial()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">Agregar Material</h1>
+    <!--
+    <div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeAddMaterial()"> Cerrar</button>
+    </div>
+    -->
+  </ion-header-bar>
+  <ion-content has-bouncing="false" class="agregar-material" on-swipe-right="closeAddMaterial()" scroll="false"> 
+
+      <ion-list>
+        <div class="row pedido-detalle-head">
+          <div class="col-20">Cantidad</div>
+          <div class="col-20">Tipo</div>
+          <div class="col-30" ng-show="{{$root.esGEX == 1}}">Valor unitario</div>
+          <div class="col-30" ng-show="{{$root.esGEX == 1}}">Total</div>
+          <div class="col-30" ng-show="{{$root.esGEX == 0}}"></div>
+          <div class="col-30" ng-show="{{$root.esGEX == 0}}"></div>
+        </div>
+      </ion-list>
+      <ion-scroll direction="y" style="height: calc(100vh - 83px);">
+        <ion-list show-delete="false" can-swipe="true" swipe-direction="both" on-swipe-right="noSwipeRight($event)">
+          <ion-item ng-repeat="item in det">
+            <div class="row pedido-detalle-fila">
+              <div class="col-20">{{item.cantidad}} x</div>
+              <div class="col-20"><img src="img/{{item.material}}.png" /></div>
+              <div class="col-30" ng-show="{{$root.esGEX == 1}}">{{(item.valor | currency:"$ ":0)}}</div>
+              <div class="col-30" ng-show="{{$root.esGEX == 0}}"></div>
+              <div class="col-20" ng-show="{{$root.esGEX == 1}}">{{(item.cantidad * item.valor | currency:"$ ":0)}}</div>
+              <div class="col-20" ng-show="{{$root.esGEX == 0}}"></div>
+              <div class="col-10"><i class="button-clear button-icon ion-ios-arrow-right"></i></div>
+              <ion-option-button side="right" class="button-assertive icon ion-trash-a" ng-click="itemTrash('{{item.material}}');"></ion-option-button>
+            </div>
+          </ion-item>
+        </ion-list>
+
+        <slick settings="slickConfig" on-swipe-right="noSwipeRight($event)" center-mode=true infinite=true slides-to-show=3 slides-to-scroll=1>
+          <div class="agregar-icon">
+            <div class="mat" ng-click="addMaterialNew($event);">
+              <h1>5</h1><h2>Normal</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="mat" ng-click="addMaterialNew($event);">
+              <h1>11</h1><h2>Normal</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="mat" ng-click="addMaterialNew($event);">
+              <h1>15</h1><h2>Normal</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="mat" ng-click="addMaterialNew($event);">
+              <h1>45</h1><h2>Normal</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="mat" ng-click="addMaterialNew($event);">
+              <h1>15</h1><h2>VM</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="matv" ng-click="addMaterialNew($event);">
+              <h1>15</h1><h2>VMA</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="matc" ng-click="addMaterialNew($event);">
+              <h1>5</h1><h2>Catalítico</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="matc" ng-click="addMaterialNew($event);">
+              <h1>11</h1><h2>Catalítico</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="matc" ng-click="addMaterialNew($event);">
+              <h1>15</h1><h2>Catalítico</h2>
+            </div>
+          </div>
+          <div class="agregar-icon">
+            <div class="matc" ng-click="addMaterialNew($event);">
+              <h1>45</h1><h2>Catalítico</h2>
+            </div>
+          </div>
+        </slick>
+        <!--<ion-slide-box on-slide-changed="slideChanged($index)">-->
+
+        <div class="slider_foot text-center">
+          <button ng-click="modalMatMenos();" class="button-icon button-icon button-clear ion-ios-minus-outline"></button>
+          <input type="tel" maxlength="2" ng-model="addMaterial.cantidad" />
+          <button ng-click="modalMatMas();" class="button-icon button-icon button-clear ion-ios-plus-outline"></button>
+          <br /><br />
+          <button class="button-abastible-2 button" ng-click="modalMatClick();">Agregar</button>
+          <br /><br />
+          <button class="button-abastible-listo button" ng-show="det.length > 0" ng-click="closeAddMaterial();">Listo</button>
+        </div>
+      </ion-scroll>
+  </ion-content>
+</ion-modal-view>

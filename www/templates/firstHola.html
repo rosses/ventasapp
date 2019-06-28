@@ -1,0 +1,22 @@
+<ion-view view-title="firstHola" class="firstHola">
+  <ion-content>
+    <h1 class="animated fadeInUp">Hola</h1>
+    <h2 id="firstHola_Nombre" style="display:none;">{{app.nombre}}</h2>
+    <h3 id="firstHola_txt" style="display:none;">
+    Bienvenido a Repartidor Abastible, la App para Distribuidores Abastible.
+    <br /><br />
+    En tu primer acceso vamos a cargar datos de configuración. Presiona continuar y espera unos segundos.
+    <br /><br />
+    </h3>
+
+    <div id="firstHola_botones" class="text-center" style="display:none;">
+      <button class="button button-abastible" ng-click="skipConfig();">CONTINUAR</button>
+      <!--
+      printConfig(); 
+      <br /><br />
+      <button class="button button-abastible-line" ng-click="skipConfig();">NO CONFIGURAR IMPRESORA</button>
+      -->
+    </div>
+
+  </ion-content>
+</ion-view>

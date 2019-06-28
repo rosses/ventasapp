@@ -1,0 +1,94 @@
+<ion-view view-title='Venta en terreno' class="pedidos" on-swipe-right="onSwipeRight()">
+  <ion-content>
+
+    <ion-list>
+      <div class="row pedido-detalle-head-tarreo">
+        <div class="col-20">Cantidad</div>
+        <div class="col-20">Tipo</div>
+        <div class="col-30" ng-show="{{esGEX == 1}}">Valor unitario</div>
+        <div class="col-30" ng-show="{{esGEX == 1}}">Total</div>
+        <div class="col-30" ng-show="{{esGEX == 0}}"></div>
+        <div class="col-30" ng-show="{{esGEX == 0}}"></div>
+      </div>
+    </ion-list>
+
+
+    <ion-list show-delete="false" can-swipe="true" swipe-direction="both" on-swipe-right="noSwipeRight($event)">
+      <ion-item ng-repeat="item in det">
+        <div class="row pedido-detalle-fila">
+          <div class="col-20">{{item.items.length}} x</div>
+          <div class="col-20"><img src="img/{{item.material}}.png" /></div>
+          <div class="col-30" ng-show="{{esGEX == 1}}">{{(item.valor | currency:"$ ":0)}}</div>
+          <div class="col-30" ng-show="{{esGEX == 0}}">&nbsp;</div>
+          <div class="col-20 tdt3" ng-show="{{esGEX == 1}}">{{(item.items.length * item.valor | currency:"$ ":0)}}</div>
+          <div class="col-20 tdt3" ng-show="{{esGEX == 0}}">&nbsp;</div>
+          <!--<div class="col-10"><a ng-click="itemTrash('{{item.material}}');" class="button-clear button-icon ion-ios-trash-outline"></a></div>-->
+          <div class="col-10"><i class="button-clear button-icon ion-ios-arrow-right"></i></div>
+          <ion-option-button side="right" class="button-assertive icon ion-trash-a" ng-click="itemTrash('{{item.material}}');"></ion-option-button>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <div class="text-center vacio" ng-show="!det.length">
+      <i class="fa fa-truck fa-3x"></i>
+      <h2>¡El pedido está vacío!</h2>
+    </div>
+
+    <div class="resumen" ng-show="det.length">
+    <div class="row">
+      <div class="col-40 descuento_new">
+        <a href ng-click="openAddMedioPago()">
+          <img src="img/icon.des.png" /><br />
+          Aplicar<br />descuentos
+        </a>
+      </div>
+      <div class="col-60">
+        <div class="row">
+          <div class="col-50 hd totalgris">DESCUENTO:</div>
+          <div class="col-50 hd3 totalgris">{{(descuentos | currency:"$ ":0)}}</div>
+        </div>
+        <div class="row" ng-show="{{esGEX == 1}}">
+          <div class="col-50 hd total">TOTAL:</div>
+          <div class="col-50 hd3 total">{{(total | currency:"$ ":0)}}</div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+
+    <div class="text-center addMaterialTarreo">
+      <a href ng-click="openAddMaterial()">
+        Agregar cilindro 
+        <button class="button-icon button-icon button-clear ion-ios-plus-outline"></button>
+      </a>
+    </div>
+    <br /><br />
+
+  </ion-content>
+  <ion-footer-bar class="footer"   ng-show="(det.length > 0)">
+  <!--
+    <div class="row">
+      <div class="col-50 text-center endbutton" ng-show="(det.length > 0)">
+        <a href ng-click="openAddMedioPago()">
+          <img src="img/icon.pago.png" /><br />
+          Pagar pedido
+        </a>
+      </div>
+      <div class="col-50 text-center endbutton2" ng-show="(isPromocion == 1 || isDrut == 1 || isCupon == 1) && (total == 0)">
+        <a href ng-click="cerrarPedidoSimple()">
+          <img src="img/icon.cerrar.png" /><br />
+          Cerrar pedido
+        </a>
+      </div>
+    </div>
+  -->
+    <ion-list class="footer_tools" show-delete="false" can-swipe="true" swipe-direction="both" on-swipe-right="noSwipeRight($event)">
+      <ion-item>
+        <div class="row bgnaranjo text-center" style="padding-top: 5px;" ng-click="openAddPago()">
+          <div class="col"><img src="img/icon.pago.png" /> PAGAR</div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-footer-bar>
+</ion-view>

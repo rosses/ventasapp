@@ -1,0 +1,61 @@
+  <ion-modal-view class="pedidos">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closePedidoTerminado()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">Pedido {{pedido.numeroPedido}}</h1>
+  </ion-header-bar>
+  <ion-content on-swipe-right="onSwipeRight()">
+    <ion-list>
+      <div class="item item-divider header_detalle">
+        <strong class="titulo">RESUMEN DEL PEDIDO </strong>
+        <br><br>
+      </div>
+    </ion-list>
+
+    <div class="row close-detalle">
+      <div class="col-90">
+        <div class="detalle">{{pedido.direccionCliente}}</div>
+        <div class="detalle">{{pedido.nombreCliente}}</div>
+        <!--<div class="detalle">{{pedido.observacion}}</div>-->
+      </div>
+    </div>
+
+    <hr color="gray" size="1" />
+
+    <div class="resumen" ng-show="det.length">
+      <div class="row">
+        <div class="col-50 hd2 totalgris">DESCUENTO:</div>
+        <div class="col-50 hd2 totalgris"><strong>{{(descuentos | currency:"$ ":0)}}</strong></div>
+      </div>
+      <div class="row">
+        <div class="col-50 hd2 total">TOTAL:</div>
+        <div class="col-50 hd2 total"><strong>{{(total | currency:"$ ":0)}}</strong></div>
+      </div>
+      <div class="row">
+        <div class="col-50 hd2 total">MEDIOS DE PAGO:</div>
+        <div class="col-50 hd2">
+          <div ng-show="auxMedioPagoCierre == 'EFECTIVO'">
+            Efectivo <img src="img/pago.01efectivo.png" class="pedido-resumen-img" />
+          </div>
+          <div ng-show="auxMedioPagoCierre == 'CHEQUE'">
+            Cheque <img src="img/pago.02chp.png" class="pedido-resumen-img" />
+          </div>
+          <div ng-show="auxMedioPagoCierre == 'REDCOMPRA'">
+            Redcompra <img src="img/pago.01redcompra.png" class="pedido-resumen-img" />
+          </div>
+          <div ng-show="isCupon">Cupón <img src="img/pago.07cuponvf.png" class="pedido-resumen-img" /></div>
+          <div ng-show="isPromocion">Promoción <img src="img/pago.06promo.png" class="pedido-resumen-img" /></div>
+          <div ng-show="isDrut">Descuento Rut <img src="img/pago.05drut.png" class="pedido-resumen-img" /></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <p>Recibe tu voucher via correo electrónico</p>
+      <input class="voucher-email" ng-model="voucher.email" placeholder="INGRESA CORREO" />
+      <br /><br />
+      <button class="button-abastible-2 button" ng-click="PedidoTerminado();">FINALIZAR</button>
+    </div>
+  </ion-content>
+</ion-modal-view>

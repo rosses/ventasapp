@@ -1,0 +1,37 @@
+<ion-modal-view class="agregar_mediopago">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closeAddMedioPago()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">Déjanos tus datos</h1>
+    <!--
+    <div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeAddMedioPago()"> Cerrar</button>
+    </div>
+    -->
+  </ion-header-bar>
+  <ion-content>
+      <p style="padding:20px; font-size: 18px;">Hubo problemas al validar tu huella de identidad. Te contactaremos para ayudarte a enrolar tus huellas, déjanos algunos de estos datos:</p>
+      <div class="welcome__phone">
+        <input class="" ng-model="contactProblem.celular" maxlength="11" type="tel" placeholder="Celular" />
+      </div>
+      <div class="welcome__phone">
+        <input class="" ng-model="contactProblem.fijo" maxlength="11" type="tel" placeholder="Teléfono Fijo" />
+      </div>
+      <div class="welcome__phone">
+        <input class="" ng-model="contactProblem.correo" maxlength="100" type="text" placeholder="Correo" />
+      </div>
+      <br /><br />
+      <abastible-button>
+      <p class="abastible__button-text">
+        <button class="abastible__button-next" ng-click="terminarDRUT()">Terminar</button>
+      </p>
+      </abastible-button>
+      <br /><br />
+      <div class="text-center" align="center">
+        <a style="text-decoration: underline;" ng-click="closeformularioDRUT()">Omitir</a>
+      </div>
+      <br /><br />
+ 
+  </ion-content>
+</ion-modal-view>

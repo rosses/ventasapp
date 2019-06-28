@@ -1,0 +1,99 @@
+<ion-view view-title='Tarreo' class="tarreo">
+  <ion-content>  
+    <ion-list>
+      <ion-item ng-repeat="item in items">
+      	<div class="row">
+      		<div class="col-25 tools">
+      			<a ng-click="itemMatMenos('{{item.material}}');" class="button-icon button-icon button-clear ion-ios-minus-outline"></a>
+      			<div>{{item.cantidad}}</div>
+      			<a ng-click="itemMatMas('{{item.material}}');" class="button-icon button-icon button-clear ion-ios-plus-outline"></a>
+      		</div>
+      		<div class="col-20 text-center azul"><img src="img/{{item.material}}.png" /></div>
+      		<div class="col-20">$ {{item.precio}}</div>
+      		<div class="col-25">$ {{item.total}}</div>
+      		<div class="col-10">
+      			<a ng-click="itemTrash('{{item.material}}');" class="button-clear button-icon ion-ios-trash-outline"></a>
+      		</div>
+      	</div>
+      </ion-item>
+    </ion-list>
+
+    <div class="text-center vacio" ng-show="!items.length">
+    	<i class="fa fa-truck fa-2x"></i>
+    	<h2>¡La venta está vacía!</h2>
+    </div>
+
+    <div class="text-center addMaterialTarreo">
+    	<a href ng-click="openAddMaterial()">
+    		Agregar material 
+    		<button class="button-icon button-icon button-clear ion-ios-plus-outline"></button>
+    	</a>
+    </div>
+
+    <div class="resumen" ng-show="items.length">
+    	<!--
+    	<div class="row">
+    		<div class="col-50 hd">DESCUENTOS:</div>
+    		<div class="col-50 hd">$ {{totales.descuentos}}</div>
+    	</div>
+    	-->
+    	<div class="row">
+    		<div class="col-50 hd total">TOTAL:</div>
+    		<div class="col-50 hd total">$ {{totales.total}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.cupon > 0">
+    		<div class="col-50 hd">CUPON VF:</div>
+    		<div class="col-50 hd">$ {{totales.cupon}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.drut > 0">
+    		<div class="col-50 hd">DESCUENTO RUT:</div>
+    		<div class="col-50 hd">$ {{totales.drut}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.promo > 0">
+    		<div class="col-50 hd">PROMOCIÓN:</div>
+    		<div class="col-50 hd">$ {{totales.promo}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.cha > 0">
+    		<div class="col-50 hd">CHEQUE ABASTIBLE:</div>
+    		<div class="col-50 hd">$ {{totales.cha}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.chp > 0">
+    		<div class="col-50 hd">CHEQUE PERSONAL:</div>
+    		<div class="col-50 hd">$ {{totales.chp}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.efectivo > 0">
+    		<div class="col-50 hd">EFECTIVO:</div>
+    		<div class="col-50 hd">$ {{totales.efectivo}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.cmr > 0">
+    		<div class="col-50 hd">CMR:</div>
+    		<div class="col-50 hd">$ {{totales.cmr}}</div>
+    	</div>
+
+    	<div class="row" ng-show="totales.sumapagos > 0">
+    		<div class="col-50 hd total">TOTAL PAGOS:</div>
+    		<div class="col-50 hd total">$ {{totales.sumapagos}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.vuelto > 0">
+    		<div class="col-50 hd totalverde">VUELTO:</div>
+    		<div class="col-50 hd totalverde">$ {{totales.vuelto}}</div>
+    	</div>
+    	<div class="row" ng-show="totales.pendiente > 0">
+    		<div class="col-50 hd totalrojo">SALDO PENDIENTE:</div>
+    		<div class="col-50 hd totalrojo">$ {{totales.pendiente}}</div>
+    	</div>
+
+    </div>
+	<ion-footer-bar class="footer">
+	<div class="row" ng-show="items.length">
+	  <div class="col text-center">
+		<a href ng-click="openAddMedioPago()">
+			<img src="img/icon.pago.png" /><br />
+			Pago
+		</a>
+	  </div>
+	</div>
+	</ion-footer-bar>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,113 @@
+<ion-view class="pedidos {{$root.sinpedidos == 1 ? 'sinpedidos':''}}">
+  <ion-nav-title>Lista de pedidos <div class="badge_titulo">{{$root.totalTitulo}}</div></ion-nav-title>
+  <ion-content ng-show="$root.nroPedidosList != 0">
+      <ion-refresher on-refresh="doRefresh()" pulling-text="Actualizar...">
+
+      </ion-refresher>
+
+      <!--
+      <h3 ng-show="$root.nroPedidosList == 0" class="text-center">
+        <br /><br /><br /><br />
+        <i class="fa fa-smile-o fa-3x"></i>
+        <br /><br />
+        No hay pedidos pendientes
+        <br /><br />
+      </h3>
+
+      -->
+
+      <ion-list>
+
+
+        <!-- PEDIDO RECLAMADOS -->
+        <ion-item ng-href="#/main/verpedido/{{pedido.pedidoOrigen}}/{{pedido.numeroPedido}}" class="item item-text-wrap" ng-repeat="pedido in $root.PedidosReclamado">
+          <div class="row row_pedido {{pedido.TimeLeftSemaforo2}} pedido_reclamado {{pedido.zero}}">
+            <div class="col-20 dis">{{pedido.TimeLeft2}}
+              <a href ng-show="pedido.lat != ''" ng-click="openMapa('{{pedido.lat}}','{{pedido.lng}}');"><img src="img/icon.crosshair.png" /></a>
+            </div>
+            <div class="col-10 semaforo"><i class="fa fa-circle semaforo"></i></div>
+            <div class="col-50 dirc">{{pedido.direccionCliente}} <div class="pedidodte" ng-bind-html="pedido.detalleHTML"></div>
+              <div ng-show="pedido.pedidoOrigen == '1' && pedido.App == '' && pedido.Boton == ''" class="subdetalle-material3">L800</div>
+              <div ng-show="pedido.App == '1'" class="subdetalle-materialapp">APP</div>
+              <div ng-show="pedido.OneClick == '1'" class="subdetalle-materialapp2">PAGOCLICK</div>
+              <div ng-show="pedido.Boton == '1'" class="subdetalle-materialapp">BOTON</div>
+            </div>
+            <div class="col-20 text-center">
+              <!--<a href="#/main/verpedido/{{pedido.pedidoOrigen}}/{{pedido.numeroPedido}}"><img src="img/icon.detail.png" /></a>&nbsp;&nbsp;-->
+              <button class="button-icon button-transito button-clear" ng-if="pedido.pedidoOrigen == '1' && pedido.enRuta == 0" ng-click="transito(pedido.numeroPedido, pedido.fechaCompromiso+' '+pedido.horaCompromiso)">Marca en ruta</button>
+              <img src="img/road-perspective-of-curves.png" style="max-width: 30px;" ng-if="pedido.enRuta == 1" />
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+      <!-- PEDIDOS AGILIZADO -->
+
+        <!-- PEDIDO AGILIZADO -->
+        <ion-item ng-href="#/main/verpedido/{{pedido.pedidoOrigen}}/{{pedido.numeroPedido}}" class="item item-text-wrap" ng-repeat="pedido in $root.PedidosAgilizado">
+          <div class="row row_pedido {{pedido.TimeLeftSemaforo2}} pedido_agilizado {{pedido.zero}}">
+            <div class="col-20 dis">{{pedido.TimeLeft2}}
+            <a href ng-show="pedido.lat != ''" ng-click="openMapa('{{pedido.lat}}','{{pedido.lng}}');"><img src="img/icon.crosshair.png" /></a>
+
+            </div>
+            <div class="col-10 semaforo"><i class="fa fa-circle semaforo"></i></div>
+            <div class="col-50 dirc">{{pedido.direccionCliente}}
+              <div class="pedidodte" ng-bind-html="pedido.detalleHTML"></div>
+              <div ng-show="pedido.pedidoOrigen == '1' && pedido.App == '' && pedido.Boton == ''" class="subdetalle-material3">L800</div>
+              <div ng-show="pedido.App == '1'" class="subdetalle-materialapp">APP</div>
+              <div ng-show="pedido.OneClick == '1'" class="subdetalle-materialapp2">PAGOCLICK</div>
+              <div ng-show="pedido.Boton == '1'" class="subdetalle-materialapp">BOTON</div>
+            </div>
+            <div class="col-20 text-center">
+              <!--<a href="#/main/verpedido/{{pedido.pedidoOrigen}}/{{pedido.numeroPedido}}"><img src="img/icon.detail.png" /></a>&nbsp;&nbsp;-->
+              <button class="button-icon button-transito button-clear" ng-if="pedido.pedidoOrigen == '1' && pedido.enRuta == 0" ng-click="transito(pedido.numeroPedido, pedido.fechaCompromiso+' '+pedido.horaCompromiso)">Marca en ruta</button>
+              <img src="img/road-perspective-of-curves.png" style="max-width: 30px;" ng-if="pedido.enRuta == 1" />
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+      <!-- PEDIDOS AGILIZADO -->
+
+        <!-- PEDIDO NUEVO: OK -->
+        <ion-item ng-href="#/main/verpedido/{{pedido.pedidoOrigen}}/{{pedido.numeroPedido}}" class="item item-text-wrap" ng-repeat="pedido in $root.PedidosNuevos">
+          <div class="row row_pedido {{pedido.TimeLeftSemaforo2}} pedido_nuevo {{pedido.zero}}">
+            <div class="col-20 dis">{{pedido.TimeLeft2}}
+              <a href ng-show="pedido.lat != ''" ng-click="openMapa('{{pedido.lat}}','{{pedido.lng}}');"><img src="img/icon.crosshair.png" /></a>
+            </div>
+            <div class="col-10 semaforo"><i class="fa fa-circle semaforo"></i></div>
+            <div class="col-50 dirc">
+              {{pedido.direccionCliente}} <div class="pedidodte" ng-bind-html="pedido.detalleHTML"></div>
+              <div ng-show="pedido.pedidoOrigen == '1' && pedido.App == '' && pedido.Boton == ''" class="subdetalle-material3">L800</div>
+              <div ng-show="pedido.App == '1'" class="subdetalle-materialapp">APP</div>
+              <div ng-show="pedido.OneClick == '1'" class="subdetalle-materialapp2">PAGOCLICK</div>
+              <div ng-show="pedido.Boton == '1'" class="subdetalle-materialapp">BOTON</div>
+            </div>
+            <div class="col-20 text-center">
+              <!--<a href="#/main/verpedido/{{pedido.pedidoOrigen}}/{{pedido.numeroPedido}}"><img src="img/icon.detail.png" /></a>&nbsp;&nbsp;-->
+              <button class="button-icon button-transito button-clear" ng-if="pedido.pedidoOrigen == '1' && pedido.enRuta == 0" ng-click="transito(pedido.numeroPedido, pedido.fechaCompromiso+' '+pedido.horaCompromiso)">Marca en ruta</button>
+              <img src="img/road-perspective-of-curves.png" style="max-width: 30px;" ng-if="pedido.enRuta == 1" />
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+      <!-- PEDIDOS NUEVOS -->
+
+      <!-- PEDIDOS ELIMINADR?? -->
+  </ion-content>
+  <ion-footer-bar class="footer" ng-show="$root.nroPedidosList != 0">
+    <div class="row">
+      <div class="col-50 text-center">
+        <a href ng-click="doRefresh(1)">
+          <img src="img/icon.refresh.png" /><br />
+          Actualizar
+        </a>
+        
+      </div>
+      <div class="col-50 text-center">
+        <a href ng-click="showRoutingOptions()">
+          <img src="img/icon.router.png" /><br />
+          Ruteador
+        </a>
+      </div>
+    </div>
+  </ion-footer-bar>
+</ion-view>

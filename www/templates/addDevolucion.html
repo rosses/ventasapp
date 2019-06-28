@@ -1,0 +1,75 @@
+  <ion-modal-view class="devolucion">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closeDevolucion()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">Devolución / Anulación</h1>
+    <!--
+    <div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeDevolucion()"> Cerrar</button>
+    </div>
+    -->
+  </ion-header-bar>
+  <ion-content on-swipe-right="closeDevolucion()">
+    <br /><br />
+    <div class="row">
+      <div class="col-33 text-center">
+        <a href ng-click="activarDevolucion('PEMA');" id="PEMA">
+          <img src="img/dev.malasignado.png" /><br />Mal asignado
+      </div>
+      <div class="col-33 text-center">
+        <a href ng-click="activarDevolucion('PEAD');" id="PEAD">
+          <img src="img/dev.aclarardireccion.png" /><br />Aclarar dirección
+        </a>
+      </div>
+      <div class="col-33 text-center">
+        <a href ng-click="activarDevolucion('PECC');" id="PECC">
+          <img src="img/dev.casacerrada.png" /><br />Casa cerrada
+        </a>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-33 text-center">
+        <a href ng-click="activarDevolucion('PESD');" id="PESD">
+          <img src="img/dev.sindinero.png" /><br />Sin dinero
+        </a>
+      </div>
+      <div class="col-33 text-center">
+        <a href ng-click="activarDevolucion('PSSC');" id="PSSC">
+          <img src="img/dev.sincilindro.png" /><br />Sin cilindro
+        </a>
+      </div>
+      <div class="col-33 text-center">
+        <a href ng-click="activarDevolucion('CEAN');" id="CEAN">
+          <img src="img/dev.anulado.png" /><br />Anulado
+        </a>
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col-33"></div>
+      <div class="col-33 text-center">
+        <a href ng-click="activarDevolucion('CEAC');" id="CEAC">
+          <img src="img/dev.otra.png" /><br />Atendido por otra compañia
+        </a>
+      </div>
+      <div class="col-33"></div>
+    </div>
+    <br />
+    <div class="devBar">
+      <div class="devBarComentario">
+        <textarea ng-model="dev.comentario" elastic placeholder="Agregar Comentario"></textarea>
+      </div>
+      <div class="devBarFotografia">
+        <img src="" class="vistapreviafoto" />
+        <label ng-click="takePicture()" class="labelvistafoto">Agregar fotografía</label>
+          <!--<input type="file" id="addPhotoDev" ng-model-instant onchange="angular.element(this).scope().uploadImage(this)" style="display:none;" />-->
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+    <div class="text-center">
+      <br /><br />
+      <button class="button-abastible-2 button" ng-click="showload(); cerrarPedido('dev','','',devActiva,'','',0,0,devActiva,dev.comentario);">Listo</button>
+    </div>
+  </ion-content>
+</ion-modal-view>

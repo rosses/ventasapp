@@ -1,0 +1,37 @@
+<ion-modal-view class="agregar_mediopago">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closeAddMedioPago()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">Aplicar descuento</h1>
+    <!--
+    <div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeAddMedioPago()"> Cerrar</button>
+    </div>
+    -->
+  </ion-header-bar>
+  <ion-content on-swipe-right="closeAddMedioPago()">
+    
+    <div class="row">
+      <div class="col text-center">
+        <a href ng-click="addMpDrutPedido();">
+          <div class="mpDiv"><img src="img/2.pago.05drut.png" /></div>DESCUENTO RUT
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <a href ng-click="addMpPromocionPedido();">
+          <div class="mpDiv"><img src="img/2.pago.06promo.png" /></div>CUPÓN DE PROMOCIÓN
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <a href ng-click="addMpCuponPedido();">
+          <div class="mpDiv"><img src="img/2.pago.07cuponvf.png" /></div>CUPÓN DE VENTA FUTURA
+        </a>
+      </div>
+    </div>  
+  </ion-content>
+</ion-modal-view>

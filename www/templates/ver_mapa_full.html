@@ -1,0 +1,22 @@
+<ion-modal-view class="ver_mapa">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon button-clear" ng-click="closeMapaFull()"><i class="icon ion-ios-arrow-back"></i></button>
+    </div>
+    <h1 class="title">MAPA PEDIDO</h1>
+    <!--<div class="buttons">
+      <button class="button button-clear ion-ios-close-outline" ng-click="closeMapaFull()"> Cerrar</button>
+    </div>-->
+  </ion-header-bar>
+  <ion-content scroll="false">
+    <div id="map2" data-tap-disabled="true"></div>
+    <div id="footmap">
+      <div class="timeleft_route" id="div_tlrfull" style="display:none;">Tiempo normal para la ruta: <strong><span id="timeleft_route"></span></strong></div>
+      <div class="timeleft_route" id="div2_tlrfull" style="display:none;"">Deberías demorar <strong><span id="timeleft_route2"></span></strong> con el tráfico actual.</div>
+      <div class="timeleft_route" id="div3_tlrfull" style="display:none;"">Deberías demorar <strong><span id="timeleft_route3"></span></strong> con el tráfico actual, considerando 7 min por cada entrega.</div>
+      <ion-scroll direction="y" class="ruta_detalle_scroll">
+        <div id="ruta_detallefull"></div>
+      </ion-scroll>
+    </div>
+  </ion-content>
+</ion-modal-view>

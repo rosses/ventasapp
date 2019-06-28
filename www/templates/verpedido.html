@@ -1,0 +1,151 @@
+<ion-view view-title='Pedido {{titleNumber}}' class="pedidos" on-swipe-right="onSwipeRight()">
+  <ion-content>
+
+    <ion-list>
+      <div class="item item-divider header_detalle">
+        <div class="text-wrap" style="line-height: 20px; width: 120px; display: inline-block; overflow: inherit; text-overflow: clip; white-space: normal;"><strong class="titulo">INFORMACIÓN DEL PEDIDO</strong></div>
+        <div class="detalle" style="float: right;" ng-show="pedido.lat != ''"><a href ng-click="openMapa(pedido.lat,pedido.lng);"><img src="img/icon.crosshair.png" /></a></div>
+        <div class="detalle" style="float: right;" ng-show="pedido.lat != ''"><a ng-click="gotoWaze(pedido.lat,pedido.lng);"><img src="img/icon.waze.png" /></a></div>
+        <div class="detalle" style="float: right;" ng-show="pedido.App == '1'"><a ng-click="gotoChat();"><img src="img/chat.png" /></a></div>
+        <div style="clear:both;"></div>
+        <hr style="margin:0;" color="gray" noshade="1" />
+        <div class="row">
+          <div class="col">
+            <div class="detalle"><strong>{{pedido.direccionCliente}}</strong></div>
+            <div class="detalle">{{pedido.nombreCliente}}</div>
+            <div class="detalle">{{pedido.observacion}}</div>
+            <div class="row" ng-if="pedido.App == '1'">
+              <div class="col-50"><div ng-show="canOneclick == '1'"><div class="subdetalle-materialapp2">PAGOCLICK</div></div></div>
+              <div class="col-50">
+                <!--<button class="button-icon button-transito button-clear" ng-click="transito()">Indicar en tránsito</button>-->
+              </div>
+            </div>
+            
+          </div>
+          <!--
+          <div class="col-10">
+            <div class="detalle" ng-show="pedido.lat != ''"><a href ng-click="openMapa(pedido.lat,pedido.lng);"><img src="img/icon.crosshair.png" /></a></div>
+            <div class="detalle" ng-show="pedido.lat != ''"><a ng-click="gotoWaze(pedido.lat,pedido.lng);"><img src="img/icon.waze.png" /></a></div>
+          </div>
+          -->
+        </div>
+        <div ng-if="localCoupons.length > 0">
+          <hr />
+          <div class="row">
+            <div class="col">
+              <h4><b>Cliente ingresó descuentos, solicite físico</b></h4>
+            </div>
+          </div>
+          <div class="row" ng-repeat="coupon in localCoupons">
+            <div class="col col-33">
+              {{(coupon.Codigo.length == 16 ? 'Promoción' : '')}}
+              {{(coupon.Codigo.length == 10 ? 'Cupón' : '')}}
+              {{(coupon.Codigo.length <= 9  ? 'Especial' : '')}}            
+            </div>
+            <div class="col col-66">
+              {{coupon.Codigo}}
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+      <div class="row pedido-detalle-head">
+        <div class="col-20">Cantidad</div>
+        <div class="col-20">Tipo</div>
+        <div class="col-30">Valor unitario</div>
+        <div class="col-30">Total</div>
+      </div>
+    </ion-list>
+
+
+    <ion-list show-delete="false" can-swipe="true" swipe-direction="both" on-swipe-right="noSwipeRight($event)">
+      <ion-item ng-repeat="item in det">
+        <div class="row pedido-detalle-fila">
+          <div class="col-20">{{item.items.length}} x</div>
+          <div class="col-20"><img src="img/{{item.material}}.png" /></div>
+          <div class="col-30">{{(item.valor | currency:"$ ":0)}}</div>
+          <div class="col-20 tdt3">{{(item.items.length * item.valor | currency:"$ ":0)}}</div>
+          <div class="col-10"><i class="button-clear button-icon ion-ios-arrow-right"></i></div>
+          <!--<div class="col-10"><a ng-click="itemTrash('{{item.material}}');" class="button-clear button-icon ion-ios-trash-outline"></a></div>-->
+        </div>
+        <ion-option-button side="right" class="button-assertive icon ion-trash-a" ng-click="itemTrash('{{item.material}}');"></ion-option-button>
+      </ion-item>
+    </ion-list>
+
+    <div class="text-center vacio" ng-show="!det.length">
+      <i class="fa fa-truck fa-3x"></i>
+      <h2>¡El pedido está vacío!</h2>
+    </div>
+
+    <div class="resumen" ng-show="det.length">
+    <div class="row">
+      <div class="col-40 descuento_new">
+        <a href ng-click="openAddMedioPago()">
+          <img src="img/icon.des.png" /><br />
+          Aplicar<br />descuentos
+        </a>
+      </div>
+      <div class="col-60">
+        <div class="row">
+          <div class="col-50 hd totalgris">DESCUENTO:</div>
+          <div class="col-50 hd3 totalgris">{{(descuentos | currency:"$ ":0)}}</div>
+        </div>
+        <div class="row">
+          <div class="col-50 hd total">TOTAL:</div>
+          <div class="col-50 hd3 total">{{(total | currency:"$ ":0)}}</div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+
+    <div class="text-center addMaterialTarreo">
+      <a href ng-click="openAddMaterial()">
+        Agregar cilindro 
+        <button class="button-icon button-icon button-clear ion-ios-plus-outline"></button>
+      </a>
+    </div>
+    <br /><br />
+
+  </ion-content>
+  <ion-footer-bar class="footer">
+    <!--
+    <div class="row">
+      
+      <div class="col-50 text-center endbutton" ng-show="(det.length > 0)">
+        <a href ng-click="openAddMedioPago()">
+          <img src="img/icon.pago.png" /><br />
+          Pagar pedido
+        </a>
+      </div>
+      
+      <div class="col-33 text-center endbutton">
+        <a href ng-show="(isPromocion == 1 || isDrut == 1 || isCupon == 1) && (total == 0)" ng-click="cerrarPedidoSimple()">
+          <img src="img/icon.cerrar.png" /><br />
+          Cerrar pedido
+        </a>
+      </div>
+      
+      <div class="col-50 text-center endbutton2">
+        <a href ng-click="openDevolucion()">
+          <img src="img/icon.devolucion.png" /><br />
+          Devolver/Anular
+        </a>
+      </div>
+      
+    </div>
+    -->
+    <ion-list class="footer_tools" show-delete="false" can-swipe="true" swipe-direction="both" on-swipe-right="noSwipeRight($event)">
+      <ion-item>
+        <div class="row bgnaranjo" ng-click="openAddPago()">
+          <div class="col-90"><img src="img/icon.pago.png" /> PAGAR PEDIDO</div>
+          <div class="col-10"><i class="button-clear button-icon cc ion-ios-arrow-right"></i></div>
+        </div>
+        <ion-option-button side="right" class="button-blue" ng-click="openDevolucion();">
+          <img src="img/icon.devolucion.png" /> DEVOLVER/ANULAR
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-footer-bar>
+</ion-view>

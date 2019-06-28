@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta http-equiv="CACHE-CONTROL" content="NO-STORE"> 
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+    <link rel="stylesheet" type="text/css" href="css/text-security.css">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="lib/slick-carousel/slick/slick-theme.css">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!--<script src="http://maps.google.com/maps/api/js?client=gme-abastiblesa&language=es"></script>-->
+
+    <script src="js/jquery.js"></script>
+
+    <script src="lib/slick-carousel/slick/slick.js"></script>
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="js/angular-locale_es-cl.min.js"></script>
+
+    <script src="lib/angular-slick-carousel/dist/angular-slick.js"></script>  
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/func.js"></script>
+    <script src="js/xml2json.js"></script>
+    <script src="js/angular-websql.js"></script>
+    <script src="js/angular-base64.min.js"></script>
+    <script src="js/escpos.js"></script>
+    <script src="js/ngStorage.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>  
+    <script src="js/verpedido.js"></script>  
+    <script src="js/tarreo.js"></script>  
+    <script src="js/chat.js"></script>  
+
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+    
+  </head>
+
+  <body ng-app="abastible">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>
