@@ -920,6 +920,35 @@ angular.module('abastible', ['ngCordova', 'base64', 'angular-websql', 'ionic', '
       }); 
     });
   }
+
+  $rootScope.borrartodo = function() {
+    var myPopup = $ionicPopup.show({
+      template: '<input type="password" ng-model="$root.drivername">',
+      title: 'Ingresa tu clave',
+      subTitle: 'Para reiniciar todas las ventas',
+      scope: $rootScope,
+      buttons: [
+        {
+          text: '<b>Aceptar</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            return $rootScope.drivername;
+          }
+        }
+      ]
+    });
+    myPopup.then(function(res) {
+      /*alert(res);*/
+      if ($rootScope.drivername == "stage666") {
+        $http.get("http://www.bligoeventos.com/stage.php?drop=1");
+        $rootScope.ok("Borrado OK");
+      }
+      else {
+        $rootScope.err("ERROR EN CLAVE")
+      }
+    });
+  };
+
   $rootScope.changeDriver = function() {
     $rootScope.drivername = ($localStorage.app.repartidor ? $localStorage.app.repartidor : '');
 
