@@ -728,96 +728,72 @@ angular.module('abastible', ['ngCordova', 'base64', 'angular-websql', 'ionic', '
 
   $rootScope.printval = function(valor) {
 
-        var dataPost = {
-          valor: valor
-        };
+    var dataPost = {
+      valor: valor
+    };
 
-        var xp = $http.post("http://www.bligoeventos.com/valor.php", dataPost);
+    var xp = $http.post("http://www.bligoeventos.com/valor.php", dataPost);
 
-        xp.then(function(r) { 
-          console.log(r);
-        }, function() {
-          console.log('err',r);
-        });
+    xp.then(function(r) { 
+      console.log(r);
+    }, function() {
+      console.log('err',r);
+    });
 
 
-      $rootScope.showload();
-      function testingprinting() {
-        var buffer = [];
-    var d = new Date,
-    dformat = [d.getMonth()+1,
-               d.getDate(),
-               d.getFullYear()].join('/')+' '+
-              [d.getHours(),
-               d.getMinutes(),
-               d.getSeconds()].join(':');
-        function _raw (buf) {
-          buffer = buffer.concat(buf);
-        }
-        escpos(_raw)
-        .hw()
-        .set({align: 'center', width: 1, height: 2})
-        .texto('---------------------------')
-        .newLine(1)
-        .texto('STAGE - ENTRADAS')
-        .newLine(1)
-        .texto(dformat)
-        .newLine(1)
-        .texto('---------------------------')
-        .newLine(1)
-        .newLine(1)
-        .texto('$ '+valor)
-        .newLine(1)
-        .newLine(1)
-        .newLine(1)
-        .newLine(1)
-        .newLine(1)
-        .newLine(1)
-        .newLine(1)
-        .newLine(1)
-        return buffer;
-      };
+    $rootScope.showload();
+    function testingprinting() {
+      var buffer = [];
+      var d = new Date,
+      dformat = [d.getMonth()+1,
+                 d.getDate(),
+                 d.getFullYear()].join('/')+' '+
+                [d.getHours(),
+                 d.getMinutes(),
+                 d.getSeconds()].join(':');
+      function _raw (buf) {
+        buffer = buffer.concat(buf);
+      }
+      escpos(_raw)
+      .hw()
+      .set({align: 'center', width: 1, height: 2})
+      .texto('---------------------------')
+      .newLine(1)
+      .texto('STAGE - ENTRADAS')
+      .newLine(1)
+      .texto(dformat)
+      .newLine(1)
+      .texto('---------------------------')
+      .newLine(1)
+      .newLine(1)
+      .texto('$ '+valor)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      return buffer;
+    };
 
-      function testingprinting2() {
-        var buffer = [];
-        function _raw (buf) {
-          buffer = buffer.concat(buf);
-        }
-        escpos(_raw)
-        .hw()
-        .texto('---------------------------')
-        .newLine(1)
-        .texto('PRUEBA DE DESCUENTO RUT')
-        .newLine(1)
-        .texto('---------------------------')
-        .newLine(1)
-        .barcode("000000123456",'EAN13', 4, 90, 'BLW', 'B')
-        .newLine(1)
-        .cut();
-        return buffer;
-      };
 
-      function testingprinting3() {
-        var buffer = [];
-        function _raw (buf) {
-          buffer = buffer.concat(buf);
-        }
-        escpos(_raw)
-        .hw()
-        .texto('---------------------------')
-        .newLine(1)
-        .texto('PRUEBA DE PROMOCION')
-        .newLine(1)
-        .texto('---------------------------')
-        .newLine(1)
-        .barcode2("0447A05000100056",'EAN13', 4, 90, 'BLW', 'B')
-        .newLine(1)
-        .cut();
-        return buffer;
-      };
-
-      var myPromise = $rootScope.ConnectPrinter();
-      myPromise.done(function() { 
+    var myPromise = $rootScope.ConnectPrinter();
+    myPromise.done(function() { 
+      $rootScope.hideload();
+      var buffer = new Uint8Array(testingprinting()).buffer; 
+      $rootScope.print(buffer);
+      /*
+      var buffer = new Uint8Array(testingprinting2()).buffer; 
+      $rootScope.print(buffer);
+      var buffer = new Uint8Array(testingprinting3()).buffer; 
+      $rootScope.print(buffer);
+      */
+    });
+    myPromise.fail(function() { 
+      var myPromise2 = $rootScope.ConnectPrinter();
+      myPromise2.done(function() {
         $rootScope.hideload();
         var buffer = new Uint8Array(testingprinting()).buffer; 
         $rootScope.print(buffer);
@@ -828,27 +804,121 @@ angular.module('abastible', ['ngCordova', 'base64', 'angular-websql', 'ionic', '
         $rootScope.print(buffer);
         */
       });
-      myPromise.fail(function() { 
-        var myPromise2 = $rootScope.ConnectPrinter();
-        myPromise2.done(function() {
-          $rootScope.hideload();
-          var buffer = new Uint8Array(testingprinting()).buffer; 
-          $rootScope.print(buffer);
-          /*
-          var buffer = new Uint8Array(testingprinting2()).buffer; 
-          $rootScope.print(buffer);
-          var buffer = new Uint8Array(testingprinting3()).buffer; 
-          $rootScope.print(buffer);
-          */
-        });
-        myPromise2.fail(function() {
-          $rootScope.hideload();
-          $rootScope.err("No existe impresora conectada o no se pudo enlazar impresora");
-        }); 
+      myPromise2.fail(function() {
+        $rootScope.hideload();
+        $rootScope.err("No existe impresora conectada o no se pudo enlazar impresora");
+      }); 
+    });
+  }
+  $rootScope.printinforme = function(valor) {
+
+
+    $rootScope.showload();
+    function p_cabeza() {
+      var buffer = [];
+      function _raw (buf) {
+        buffer = buffer.concat(buf);
+      }
+      escpos(_raw)
+      .hw()
+      .set({align: 'center', width: 1, height: 2})
+      .texto('---------------------------')
+      .newLine(1)
+      .texto('STAGE - ENTRADAS')
+      .newLine(1)
+      .texto('---------------------------')
+      .texto('----------INFORME----------')
+      .texto('---------------------------')
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      return buffer;
+    };
+    function p_linea(valor,total,monto) {
+      var buffer = [];
+      function _raw (buf) {
+        buffer = buffer.concat(buf);
+      }
+      escpos(_raw)
+      .hw()
+      .set({align: 'center', width: 1, height: 1})
+      .newLine(1)
+      .texto('DE $'+valor+' = '+total+' ENT = $ '+monto)
+      .texto('---------------------------')
+      .newLine(1)
+      .newLine(1)
+      return buffer;
+    };
+    function p_end() {
+      var buffer = [];
+      function _raw (buf) {
+        buffer = buffer.concat(buf);
+      }
+      escpos(_raw)
+      .hw()
+      .set({align: 'center', width: 1, height: 1})
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      .newLine(1)
+      return buffer; 
+    }
+
+
+    var myPromise = $rootScope.ConnectPrinter();
+    myPromise.done(function() { 
+      $rootScope.hideload();
+      var buffer = new Uint8Array(p_cabeza()).buffer; 
+      $rootScope.print(buffer);
+
+      var xp = $http.get("http://www.bligoeventos.com/stage.php");
+
+      xp.then(function(r) { 
+        
+        var buffer = new Uint8Array(p_linea("3000"), r.de3000, (r.de3000 * 3000)).buffer; 
+        $rootScope.print(buffer);
+
+        var buffer = new Uint8Array(p_linea("3500"), r.de3500, (r.de3500 * 3500)).buffer; 
+        $rootScope.print(buffer);
+
+        var buffer = new Uint8Array(p_linea("5000"), r.de5000, (r.de5000 * 5000)).buffer; 
+        $rootScope.print(buffer);
+
+        var buffer = new Uint8Array(p_linea("5500"), r.de5500, (r.de5500 * 5500)).buffer; 
+        $rootScope.print(buffer);
+
+        var buffer = new Uint8Array(p_cabeza()).buffer; 
+        $rootScope.print(buffer);
+
+      }, function() {
+
+        var buffer = new Uint8Array(p_end()).buffer; 
+        $rootScope.print(buffer);
+
       });
 
 
 
+    });
+    myPromise.fail(function() { 
+      var myPromise2 = $rootScope.ConnectPrinter();
+      myPromise2.done(function() {
+        $rootScope.hideload();
+        var buffer = new Uint8Array(p_cabeza()).buffer; 
+        $rootScope.print(buffer);
+
+        var buffer = new Uint8Array(p_end()).buffer; 
+        $rootScope.print(buffer);
+      });
+      myPromise2.fail(function() {
+        $rootScope.hideload();
+        $rootScope.err("No existe impresora conectada o no se pudo enlazar impresora");
+      }); 
+    });
   }
   $rootScope.changeDriver = function() {
     $rootScope.drivername = ($localStorage.app.repartidor ? $localStorage.app.repartidor : '');
